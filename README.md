@@ -22,3 +22,8 @@ git add .
 git commit -m "Sua msg de commit"
 git push
 ```
+
+
+**Anotações para Lembrar**
+
+- Funcionários serão inicializados com os descontos zerados, dentro do loop de leitura do txt a Main deve chamar a CalculoService para setar os atributos de Funcionario e, após isso, salvar no BD com o FuncionarioDao.

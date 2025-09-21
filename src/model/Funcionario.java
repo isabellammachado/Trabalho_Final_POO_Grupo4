@@ -10,18 +10,14 @@ public class Funcionario extends Pessoa {
 	private double salarioBruto;
 	private double descontoINSS;
 	private double descontoIR;
-	private ArrayList<Dependentes> dependentes;// podem ter varios dependentes
+	private ArrayList<Dependentes> dependentes;
 
-	public Funcionario(
-            String nome, String cpf, LocalDate dataNascimento,
-            double salarioBruto, double descontoINSS,
-			double descontoIR, ArrayList<Dependentes> dependentes
-    ) {
+	public Funcionario(String nome, String cpf, LocalDate dataNascimento, double salarioBruto) {
 		super(nome, cpf, dataNascimento);
 		this.salarioBruto = salarioBruto;
-		this.descontoINSS = descontoINSS;
-		this.descontoIR = descontoIR;
-		this.dependentes = dependentes; 
+		this.dependentes = new ArrayList<>();
+		this.descontoINSS = 0.0;
+		this.descontoIR = 0.0;
 	}
 
 	public double getSalarioBruto() {
@@ -48,12 +44,12 @@ public class Funcionario extends Pessoa {
 		this.descontoIR = descontoIR;
 	}
 
-	public ArrayList<Dependentes> getDependentes() {
+	public ArrayList<Dependente> getDependentes() {
 		return dependentes;
 	}
 
-	public void adicionarDependente(Dependentes dependente) throws DependenteException {
-		for (Dependentes dep : dependentes) {
+	public void adicionarDependente(Dependente dependente) throws DependenteException {
+		for (Dependente dep : dependentes) {
 			if (dep.getCpf().equals(dependente.getCpf())) {
 				throw new DependenteException("Dependente com este CPF já existe!");
 			}
