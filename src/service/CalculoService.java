@@ -62,4 +62,24 @@ public class CalculoService extends FolhaPagamento implements ICalculoService{
 		double descontoIR = calcularIR();
 		return salarioBruto - descontoINSS - descontoIR;
 	}
+
+	public void gerarFolhaPagamento() {
+		double descontoINSS = calcularINSS();
+		double descontoIR = calcularIR();
+		double salarioLiquido = calcularSalarioLiquido();
+
+		setDescontoINSS(descontoINSS);
+		setDescontoIR(descontoIR);
+		setSalarioLiquido(salarioLiquido);
+
+		System.out.println("Folha de Pagamento:");
+		System.out.println("Funcionário: " + funcionario.getNome());
+		System.out.println("Salário Bruto: " + funcionario.getSalarioBruto());
+		System.out.println("Desconto INSS: " + descontoINSS);
+		System.out.println("Desconto IR: " + descontoIR);
+		System.out.println("Salário Líquido: " + salarioLiquido);
+
+	}
+	
+	
 }

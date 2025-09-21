@@ -14,7 +14,12 @@ public class ListagemFuncionarios {
 	public ArrayList<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}
-
+	/*
+	3 - Excluir
+	4 - Imprimir um funcionário
+	5 - Listar Funcionários
+	6 - Sair
+	*/
 	public void adicionarFuncionario() throws DependenteException {
 		Scanner sc = new Scanner(System.in);
 
@@ -103,9 +108,9 @@ public class ListagemFuncionarios {
 		System.out.println("Funcionário alterado com sucesso.");
 		sc.close();
 	}
-
+	
 	public void carregarFuncionariosDeArquivo(String caminho) {
-
+		
 		// Implementar a leitura do arquivo txt e adicionar os funcionários à lista
 		//
 		// Funcionario func = new Funcionario(...);
