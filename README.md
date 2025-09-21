@@ -2,11 +2,11 @@
 
 **COISAS QUE FALTAM SEREM FEITAS**
 
-* Organizar a estrutura do projeto (Gabriel) FEITO
-* Arrumar os Daos (Gabriel)
+* Organizar a estrutura do projeto (Gabriel) - FEITO
+* Arrumar os Daos (Gabriel) - FEITO
     * FuncionarioDao - FEITO
-    * FolhaPagamentoDao
-* Leitura do txt (Gabriel)
+    * FolhaPagamentoDao - FEITO
+* Leitura do txt
 * Conexão com o BD
 * Testar e sempre utilizar o git
 
