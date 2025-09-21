@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.time.Period;
 
-import classeException.DependenteException;
+import exception.DependenteException;
 import enums.Parentesco;
 
 public class Dependente extends Pessoa {

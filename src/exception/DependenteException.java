@@ -1,4 +1,4 @@
-package classeException;
+package exception;
 
 
 public class DependenteException extends Exception{

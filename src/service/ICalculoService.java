@@ -1,4 +1,4 @@
-package servico;
+package service;
 
 public interface ICalculoService {
 	 double calcularINSS();

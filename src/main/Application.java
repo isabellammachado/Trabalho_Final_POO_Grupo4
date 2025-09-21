@@ -1,6 +1,6 @@
 package main;
 
-import classeException.DependenteException;
+import exception.DependenteException;
 import view.FuncionarioView;
 
 

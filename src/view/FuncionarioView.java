@@ -1,6 +1,6 @@
 package view;
 
-import classeException.DependenteException;
+import exception.DependenteException;
 import model.ListagemFuncionarios;
 
 public class FuncionarioView {
