@@ -62,4 +62,6 @@ public class CalculoFolhaDePagamento extends FolhaPagamento implements Calculos{
 		double descontoIR = calcularIR();
 		return salarioBruto - descontoINSS - descontoIR;
 	}
+	
+	
 }

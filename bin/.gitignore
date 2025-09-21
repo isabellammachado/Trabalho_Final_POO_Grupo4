@@ -1,0 +1,12 @@
+/.metadata/
+/.project
+/Main.class
+/dao/
+/enums/
+/exception/
+/main/
+/model/
+/persistence/
+/resource/
+/service/
+/view/
