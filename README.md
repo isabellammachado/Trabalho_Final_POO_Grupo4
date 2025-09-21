@@ -2,11 +2,13 @@
 
 **COISAS QUE FALTAM SEREM FEITAS**
 
-- Organizar a estrutura do projeto (Gabriel)
-
-- Arrumar os Daos (Gabriel)
-- Leitura do txt (Gabriel)
-- Conexão com o BDTestar e sempre utilizar o git
+* Organizar a estrutura do projeto (Gabriel) FEITO
+* Arrumar os Daos (Gabriel)
+    * FuncionarioDao - FEITO
+    * FolhaPagamentoDao
+* Leitura do txt (Gabriel)
+* Conexão com o BD
+* Testar e sempre utilizar o git
 
 
 **ORDEM DE COMANDOS GIT**
@@ -27,3 +29,4 @@ git push
 **Anotações para Lembrar**
 
 - Funcionários serão inicializados com os descontos zerados, dentro do loop de leitura do txt a Main deve chamar a CalculoService para setar os atributos de Funcionario e, após isso, salvar no BD com o FuncionarioDao.
+- Pergunta: tabelas serão com nome no singular ou plural (funcionarios e folha_pagamento)? 
