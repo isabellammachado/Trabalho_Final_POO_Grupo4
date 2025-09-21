@@ -1,7 +1,6 @@
 package servico;
 
-public interface Calculos {
-	
+public interface ICalculoService {
 	 double calcularINSS();
 	 double calcularIR();
 	 double calcularSalarioLiquido();

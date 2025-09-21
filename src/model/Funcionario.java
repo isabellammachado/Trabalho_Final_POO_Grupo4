@@ -2,7 +2,6 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import classeException.DependenteException;
 
 
@@ -11,12 +10,13 @@ public class Funcionario extends Pessoa {
 	private double salarioBruto;
 	private double descontoINSS;
 	private double descontoIR;
-	
-
 	private ArrayList<Dependentes> dependentes;// podem ter varios dependentes
 
-	public Funcionario(String nome, String cpf, LocalDate dataNascimento, double salarioBruto, double descontoINSS,
-			double descontoIR, ArrayList<Dependentes> dependentes) {
+	public Funcionario(
+            String nome, String cpf, LocalDate dataNascimento,
+            double salarioBruto, double descontoINSS,
+			double descontoIR, ArrayList<Dependentes> dependentes
+    ) {
 		super(nome, cpf, dataNascimento);
 		this.salarioBruto = salarioBruto;
 		this.descontoINSS = descontoINSS;

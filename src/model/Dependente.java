@@ -6,10 +6,10 @@ import java.time.Period;
 import classeException.DependenteException;
 import enums.Parentesco;
 
-public class Dependentes extends Pessoa {
+public class Dependente extends Pessoa {
 	private Parentesco parentesco;
 
-	public Dependentes(String nome, String cpf, LocalDate dataNascimento, Parentesco parentesco)
+	public Dependente(String nome, String cpf, LocalDate dataNascimento, Parentesco parentesco)
 			throws DependenteException {
 		super(nome, cpf, dataNascimento);
 

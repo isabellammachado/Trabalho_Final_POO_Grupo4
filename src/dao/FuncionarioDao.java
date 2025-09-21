@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,33 +12,32 @@ import java.util.List;
 import model.Funcionario;
 import persistence.ConnectionFactory;
 
-public class FuncionarioDAO {
+public class FuncionarioDao {
 
-	private Connection connection;
-
-	public FuncionarioDAO() {
-		this.connection = new ConnectionFactory().getConnection();
-	}
+	public FuncionarioDao() {}
 
 	// Inserir funcionário
-	public void inserir(Funcionario funcionario) {
-		String sql = "INSERT INTO funcionarios(nome, cpf, data_nascimento, salario_bruto) "
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
-		try {
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setString(1, funcionario.getNome());
-			stmt.setString(2, funcionario.getCpf());
-			stmt.setObject(3, funcionario.getDataNascimento());
-			stmt.setDouble(4, funcionario.getSalarioBruto());
-		
+    public void inserir(Funcionario funcionario) throws SQLException {
 
-			stmt.executeUpdate();
-			stmt.close();
-		} catch (SQLException e) {
-			System.err.println("Erro ao gravar registro de funcionário!");
-			e.printStackTrace();
-		}
-	}
+        // A query SQL corrigida com 4 colunas e 4 placeholders
+        String sql = "INSERT INTO funcionarios(nome, cpf, data_nascimento, salario_bruto) VALUES (?, ?, ?, ?)";
+
+        // Use o try-with-resources para garantir que a conexão e o statement sejam fechados
+        try (Connection conn = new ConnectionFactory().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCpf());
+
+            // A forma correta de passar um java.time.LocalDate para o JDBC
+            stmt.setDate(3, Date.valueOf(funcionario.getDataNascimento()));
+
+            stmt.setDouble(4, funcionario.getSalarioBruto());
+
+            stmt.executeUpdate();
+
+        }
+    }
 
 	// Atualizar funcionário
 	public void atualizar(Funcionario funcionario, int codigo) {

@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ArquivoCSV {
+public class ArquivoService {
 	
 	public static void leituraArquivoCSV() {
 		Scanner sc = new Scanner(System.in);
