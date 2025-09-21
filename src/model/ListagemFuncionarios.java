@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import classeException.DependenteException;
-import dao.FuncionarioDAO;
+import exception.DependenteException;
+import dao.FuncionarioDao;
 import enums.Parentesco;
 
 public class ListagemFuncionarios {
@@ -43,7 +43,7 @@ public class ListagemFuncionarios {
 
 		System.out.print("Quantidade de dependentes: ");
 		int qtdDependentes = Integer.parseInt(sc.nextLine());
-		ArrayList<Dependentes> dependentes = new ArrayList<>();
+		ArrayList<Dependente> dependentes = new ArrayList<>();
 
 		for (int i = 0; i < qtdDependentes; i++) {
 			System.out.print("Nome do dependente " + (i + 1) + ": ");
@@ -63,10 +63,10 @@ public class ListagemFuncionarios {
 			int parentescoIdx = Integer.parseInt(sc.nextLine());
 			Parentesco parentesco = Parentesco.values()[parentescoIdx];
 
-			dependentes.add(new Dependentes(nomeDep, cpfDep, dataNascimento, parentesco));
+			dependentes.add(new Dependente(nomeDep, cpfDep, dataNascimento, parentesco));
 		}
 
-		Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto, 0.0, 0.0, dependentes);
+		Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
 
 		funcionarios.add(funcionario);
 	 // Salva no banco de dados
