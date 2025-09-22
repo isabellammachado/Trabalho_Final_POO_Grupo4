@@ -11,7 +11,7 @@ public void selecionarMenu() throws DependenteException {
         View.menu();
         opcao = View.selecionarMenu();
 
-        ListagemFuncionarios lista = new ListagemFuncionarios();
+        ListagemFuncionarios lista = new ListagemFuncionarios(); // ISSO DEVE FICAR FORA DO LAÇO
 
         switch (opcao) {
             case 1:
