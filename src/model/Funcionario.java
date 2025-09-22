@@ -12,7 +12,7 @@ public class Funcionario extends Pessoa {
 	private double descontoIR;
 	private ArrayList<Dependente> dependentes;
 
-	public Funcionario(int codigo, String nome, String cpf, LocalDate dataNascimento, double salarioBruto) {
+	public Funcionario(String nome, String cpf, LocalDate dataNascimento, double salarioBruto) {
 		super(nome, cpf, dataNascimento);
         this.codigo = codigo;
 		this.salarioBruto = salarioBruto;

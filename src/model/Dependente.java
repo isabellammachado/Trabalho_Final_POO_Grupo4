@@ -13,7 +13,7 @@ public class Dependente extends Pessoa {
 			throws DependenteException {
 		super(nome, cpf, dataNascimento);
 
-		if (Period.between(dataNascimento, LocalDate.now()).getYears() <= 18) {
+		if (Period.between(dataNascimento, LocalDate.now()).getYears() >= 18) {
 			throw new DependenteException("Dependente deve ser menor que 18 anos.");
 		}
 		this.parentesco = parentesco;// 

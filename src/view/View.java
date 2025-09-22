@@ -14,7 +14,8 @@ public class View {
 				3 - Excluir
 				4 - Imprimir um funcionário
 				5 - Listar Funcionários
-				6 - Sair
+				6 - Cadastrar funcionários (.txt)
+				7 - Sair
 				""");
 	}
 	public static int selecionarMenu() {
