@@ -19,6 +19,9 @@ public class ListagemFuncionarios {
 	public void adicionarFuncionario() throws DependenteException {
 		Scanner sc = new Scanner(System.in);
 
+        System.out.print("Código: ");
+        int codigo = Integer.parseInt(sc.nextLine());
+
 		System.out.print("Nome: ");
 		String nome = sc.nextLine();
 
@@ -66,7 +69,7 @@ public class ListagemFuncionarios {
 			dependentes.add(new Dependente(nomeDep, cpfDep, dataNascimento, parentesco));
 		}
 
-		Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
+		Funcionario funcionario = new Funcionario(codigo, nome, cpf, dataNascimento, salarioBruto);
 
 		funcionarios.add(funcionario);
 	 // Salva no banco de dados
