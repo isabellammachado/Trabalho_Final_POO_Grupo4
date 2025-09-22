@@ -100,6 +100,7 @@ public class ArquivoService {
 		} catch (DependenteException | IllegalArgumentException e) {
 			System.err.println("Erro de validação ao carregar o arquivo: " + e.getMessage());
 		}
+        System.out.println("Funcionários carregados com sucesso!");
 		return funcionarios;
 	}
 
