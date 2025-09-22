@@ -6,14 +6,15 @@ import exception.DependenteException;
 
 
 public class Funcionario extends Pessoa {
-
+    private int codigo;
 	private double salarioBruto;
 	private double descontoINSS;
 	private double descontoIR;
 	private ArrayList<Dependente> dependentes;
 
-	public Funcionario(String nome, String cpf, LocalDate dataNascimento, double salarioBruto) {
+	public Funcionario(int codigo, String nome, String cpf, LocalDate dataNascimento, double salarioBruto) {
 		super(nome, cpf, dataNascimento);
+        this.codigo = codigo;
 		this.salarioBruto = salarioBruto;
 		this.dependentes = new ArrayList<>();
 		this.descontoINSS = 0.0;
@@ -56,6 +57,20 @@ public class Funcionario extends Pessoa {
 		}
 		dependentes.add(dependente);
 	}
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + nome + " | CPF: " + cpf + " | Data Nascimento: "
+                + dataNascimento + " | Salário Bruto: " + salarioBruto;
+    }
 /*
 	public double calcularIR() {
 		// cIR = ((SlBruto -DeduçãoDependentes) +AliquotaIR)-DeduçãoIR

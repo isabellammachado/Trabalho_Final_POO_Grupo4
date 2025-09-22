@@ -19,19 +19,19 @@ public class FuncionarioDao {
 	// Inserir funcionário
     public void inserir(Funcionario funcionario) throws SQLException {
         // Query SQL
-        String sql = "INSERT INTO funcionarios(nome, cpf, data_nascimento, salario_bruto, desconto_inss, desconto_ir) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario(codigo, nome, cpf, data_nascimento, salario_bruto, desconto_inss, desconto_ir) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         // Use o try-with-resources para garantir que a conexão e o statement sejam fechados
         try (Connection conn = new ConnectionFactory().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, funcionario.getNome());
-            stmt.setString(2, funcionario.getCpf());
-            stmt.setDate(3, Date.valueOf(funcionario.getDataNascimento()));
-            stmt.setDouble(4, funcionario.getSalarioBruto());
-            stmt.setDouble(5, funcionario.getDescontoINSS());
-            stmt.setDouble(6, funcionario.getDescontoIR());
+            stmt.setInt(1, funcionario.getCodigo());
+            stmt.setString(2, funcionario.getNome());
+            stmt.setString(3, funcionario.getCpf());
+            stmt.setDate(4, Date.valueOf(funcionario.getDataNascimento()));
+            stmt.setDouble(5, funcionario.getSalarioBruto());
+            stmt.setDouble(6, funcionario.getDescontoINSS());
+            stmt.setDouble(7, funcionario.getDescontoIR());
 
             stmt.executeUpdate();
         }
