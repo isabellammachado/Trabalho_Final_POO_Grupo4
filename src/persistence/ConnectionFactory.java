@@ -9,7 +9,7 @@ public class ConnectionFactory {
 
     String url = "jdbc:postgresql://localhost:5432/curso";
     String usuario = "postgres";
-    String senha = "root";
+    String senha = "postgres";
     private Connection connection;
 
     public Connection getConnection() {

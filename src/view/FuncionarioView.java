@@ -40,7 +40,7 @@ public class FuncionarioView {
                     break;
                 case 6:
                     ArquivoService service = new ArquivoService();
-                    funcionarios = service.lerArquivo();
+                    funcionarios = service.carregarFuncionariosDeArquivo();
                     break;
                 case 7:
                     System.out.println("Sair");

@@ -180,12 +180,12 @@ public class ListagemFuncionarios {
 	        ArquivoService service = new ArquivoService();  
 
 	        try {
-	            List<Funcionario> funcionarios = service.lerArquivo();
+	            List<Funcionario> funcionarios = service.carregarFuncionariosDeArquivo();
 
 	            for (Funcionario f : funcionarios) {
 	                System.out.println("Funcionário: " + f.getNome());
 	            }
-	        } catch (DependenteException e) {
+	        } catch (Exception e) {
 	            System.out.println("Erro: " + e.getMessage());
 	        }
 	}
