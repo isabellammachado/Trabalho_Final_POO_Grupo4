@@ -9,13 +9,16 @@ public class View {
 		header();
 		linha();
 		System.out.println("""
-				1 - Cadastrar 
-				2 - Alterar 
-				3 - Excluir
-				4 - Imprimir um funcionário
-				5 - Listar Funcionários
-				6 - Sair
+				
+				1 - Cadastrar um novo funcionário 
+				2 - Alterar dados de um funcionário existente
+				3 - Excluir um funcionário
+				4 - Imprimir informações de um funcionário pelo CPF
+				5 - Listar todos os funcionários e seus dependentes
+				6 - Cadastrar funcionários a partir de um arquivo .txt
+				7 - Sair do sistema
 				""");
+		linha();
 	}
 	public static int selecionarMenu() {
 		int opcao = Util.informarInt("Selecione uma opção: ");

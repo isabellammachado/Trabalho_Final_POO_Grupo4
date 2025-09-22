@@ -31,7 +31,7 @@ public class TestaConnection {
 
                 double salarioBruto = rs.getDouble("salario_bruto");
 
-                Funcionario funcionario = new Funcionario(codigo, nome,cpf, dataNascimento, salarioBruto);
+                Funcionario funcionario = new Funcionario(nome,cpf, dataNascimento, salarioBruto);
 
                 listaFuncionario.add(funcionario);
 
