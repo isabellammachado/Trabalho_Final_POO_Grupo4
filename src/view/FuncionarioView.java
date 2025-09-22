@@ -31,7 +31,7 @@ public class FuncionarioView {
                     System.out.println("Excluir");
                     break;
                 case 4:
-                    System.out.println("Imprimir um funcionário");
+                    lista.imprimirFuncionarioCpf(funcionarios);
                     break;
                 case 5:
                     lista.exibirFuncionarios(funcionarios);
