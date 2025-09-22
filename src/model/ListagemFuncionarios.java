@@ -29,6 +29,13 @@ public class ListagemFuncionarios {
             Scanner sc = new Scanner(System.in);
 
             try {
+                System.out.print("Codigo: ");
+                int codigo = sc.nextInt();
+                if (codigo <= 0) {
+                    System.out.println("Código inválido. Cadastro cancelado.");
+                    break;
+                }
+
                 System.out.print("Nome: ");
                 String nome = sc.nextLine();
                 if (nome == null || nome.trim().isEmpty()) {
@@ -126,7 +133,7 @@ public class ListagemFuncionarios {
 
                 if (cancelarCadastro) break;
 
-                Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
+                Funcionario funcionario = new Funcionario(codigo, nome, cpf, dataNascimento, salarioBruto);
 
                
                 funcionarios.add(funcionario);
@@ -185,28 +192,28 @@ public class ListagemFuncionarios {
         }
     }
 
-    public void carregarFuncionariosDeArquivo(String caminhoArquivo) {
-        try (BufferedReader br = new BufferedReader(new java.io.FileReader(caminhoArquivo))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] campos = linha.split(",");
-                Funcionario funcionario = new Funcionario(
-                        campos[0], 
-                        campos[1], 
-                        LocalDate.parse(campos[2]), 
-                        Double.parseDouble(campos[3]) 
-                );
-
-                
-                funcionarios.add(funcionario);
-
-                dao.inserir(funcionario);
-            }
-            System.out.println("Arquivo importado com sucesso!");
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
-    }
+//    public void carregarFuncionariosDeArquivo(String caminhoArquivo) {
+//        try (BufferedReader br = new BufferedReader(new java.io.FileReader(caminhoArquivo))) {
+//            String linha;
+//            while ((linha = br.readLine()) != null) {
+//                String[] campos = linha.split(",");
+//                Funcionario funcionario = new Funcionario(
+//                        campos[0],
+//                        campos[1],
+//                        LocalDate.parse(campos[2]),
+//                        Double.parseDouble(campos[3])
+//                );
+//
+//
+//                funcionarios.add(funcionario);
+//
+//                dao.inserir(funcionario);
+//            }
+//            System.out.println("Arquivo importado com sucesso!");
+//        } catch (Exception e) {
+//            System.out.println("Erro: " + e.getMessage());
+//        }
+//    }
 
     public void exibirFuncionarios(List<Funcionario> funcionarios) {
         System.out.println("\n===== Lista de Funcionários =====\n");

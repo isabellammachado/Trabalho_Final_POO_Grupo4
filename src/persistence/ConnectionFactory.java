@@ -8,8 +8,8 @@ import java.sql.Connection;
 public class ConnectionFactory {
 
     String url = "jdbc:postgresql://localhost:5432/curso";
-    String usuario = "postgres";
-    String senha = "postgres";
+    String usuario = "gabrielmschmidt";
+    String senha = "231604";
     private Connection connection;
 
     public Connection getConnection() {

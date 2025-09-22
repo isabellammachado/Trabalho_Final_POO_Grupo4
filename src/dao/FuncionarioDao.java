@@ -19,10 +19,9 @@ public class FuncionarioDao {
 	
     public void inserir(Funcionario funcionario) throws SQLException {
         
-        String sql = "INSERT INTO funcionario(codigo, nome, cpf, data_nascimento, salario_bruto, desconto_inss, desconto_ir) "
+        String sql = "INSERT INTO trabalho_final_poo.funcionario(id, nome, cpf, data_nascimento, salario_bruto, desconto_inss, desconto_ir) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-       
         try (Connection conn = new ConnectionFactory().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, funcionario.getCodigo());
@@ -35,6 +34,7 @@ public class FuncionarioDao {
 
             stmt.executeUpdate();
         }
+        System.out.print("Funcionário [" + funcionario.getCodigo() + "] adicionado com sucesso!");
     }
 
 	public void atualizar(Funcionario funcionario, int codigo) {
@@ -85,7 +85,7 @@ public class FuncionarioDao {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Funcionario f = new Funcionario(rs.getString("nome"), rs.getString("cpf"),
+				Funcionario f = new Funcionario(rs.getInt("codigo"), rs.getString("nome"), rs.getString("cpf"),
 						rs.getObject("data_nascimento", LocalDate.class), rs.getDouble("salario_bruto") );
 				funcionarios.add(f);
 			}
