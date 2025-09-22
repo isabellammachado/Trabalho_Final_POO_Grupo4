@@ -9,6 +9,7 @@ public class Application {
 		 
 	        FuncionarioView view = new FuncionarioView();
 	        view.selecionarMenu();
+
 	}
 
 		

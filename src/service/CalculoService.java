@@ -5,20 +5,14 @@ import java.time.LocalDate;
 import model.FolhaPagamento;
 import model.Funcionario;
 
-public class CalculoService extends FolhaPagamento implements ICalculoService{
+public class CalculoService implements ICalculoService{
 
-	public CalculoService(int codigo, Funcionario funcionario, LocalDate dataPagamento, double descontoINSS,
-			double descontoIR, double salarioLiquido) {
-		super(codigo, funcionario, dataPagamento, descontoINSS, descontoIR, salarioLiquido);
-		// TODO Auto-generated constructor stub
-	}
+	public CalculoService() {}
 
 	@Override
-	public double calcularIR() {
+	public double calcularIR(int qtdDependentes, double salarioBruto) {
 		// cIR = ((SlBruto -DeduçãoDependentes) +AliquotaIR)-DeduçãoIR
 		double deducaoDependente = 189.59;
-		int qtdDependentes = funcionario.getDependentes().size(); 
-		double salarioBruto = funcionario.getSalarioBruto(); 
 		double totalDeducao = qtdDependentes * deducaoDependente;
 		double descontoIR;
 
@@ -37,9 +31,8 @@ public class CalculoService extends FolhaPagamento implements ICalculoService{
 	}
 
 	@Override
-	public double calcularINSS() {
-		double salarioBruto = funcionario.getSalarioBruto();
-		double descontoINSS;
+	public double calcularINSS(double salarioBruto) {
+		double descontoINSS = 0.0;
 
 		if (salarioBruto <= 1412.00) {
 			descontoINSS = salarioBruto * 0.075;
@@ -55,11 +48,10 @@ public class CalculoService extends FolhaPagamento implements ICalculoService{
 		return descontoINSS;
 	}
 
-	@Override
-	public double calcularSalarioLiquido() {
-		double salarioBruto = funcionario.getSalarioBruto();
-		double descontoINSS = calcularINSS();
-		double descontoIR = calcularIR();
+    @Override
+	public double calcularSalarioLiquido(double salarioBruto, int qtdDependentes) {
+		double descontoINSS = calcularINSS(salarioBruto);
+		double descontoIR = calcularIR(qtdDependentes, salarioBruto);
 		return salarioBruto - descontoINSS - descontoIR;
 	}
 }
