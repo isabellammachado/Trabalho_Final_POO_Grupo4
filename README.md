@@ -2,24 +2,31 @@
 
 **COISAS QUE FALTAM SEREM FEITAS**
 
-* [ ] Organizar a estrutura do projeto (Gabriel) - FEITO
-* [ ] Arrumar os Daos (Gabriel) - FEITO
-    * [ ] FuncionarioDao - FEITO
-    * [ ] FolhaPagamentoDao - FEITO
-* [ ] Leitura do txt - FEITO
-* [ ] Conexão com o BD - FEITO
+* [x] Organizar a estrutura do projeto
+* [x] Arrumar os Daos 
+    * [x] FuncionarioDao 
+    * [x] FolhaPagamentoDao 
+* [x] Leitura do txt 
+* [x] Conexão com o BD 
 * [ ] Arrumar Métodos da CalculoService
 * [ ] Criar Classe Main para orquestração do App
 
 
 **ORDEM DE COMANDOS GIT**
 
-**1. Para puxar as alterações do github**
+**1. Entre no diretório raiz do projeto**
+
+Exemplo:
+```
+cd xx/xx/Trabalho_Final_POO_Grupo4
+```
+
+**2. Comando para puxar as alterações do github**
 ```
 git pull
 ```
 
-**2. Para empacotar e enviar as alterações**
+**3. Comando para empacotar e enviar as alterações**
 ```
 git add .
 git commit -m "Sua msg de commit"
