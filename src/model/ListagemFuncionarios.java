@@ -32,6 +32,13 @@ public class ListagemFuncionarios {
 	        Scanner sc = new Scanner(System.in);
 
 	        try {
+                System.out.print("Nome: ");
+                int codigo = sc.nextInt();
+                if (codigo <= 0) {
+                    System.out.println("Código inválido. Cadastro cancelado.");
+                    break;
+                }
+
 	            System.out.print("Nome: ");
 	            String nome = sc.nextLine();
 	            if (nome == null || nome.trim().isEmpty()) {
@@ -77,7 +84,7 @@ public class ListagemFuncionarios {
 	            ArrayList<Dependente> dependentes = new ArrayList<>();
 
 	            for (int i = 0; i < qtdDependentes; i++) {
-	                System.out.print("Nome do dependente " + (i + 1) + ": ");
+                    System.out.print("Nome do dependente " + (i + 1) + ": ");
 	                String nomeDep = sc.nextLine();
 	                if (nomeDep == null || nomeDep.trim().isEmpty()) {
 	                    System.out.println("Nome do dependente inválido. Cadastro cancelado.");
@@ -129,7 +136,7 @@ public class ListagemFuncionarios {
 
 	            if (cancelarCadastro) break;
 
-	            Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
+	            Funcionario funcionario = new Funcionario(codigo, nome, cpf, dataNascimento, salarioBruto);
 	            funcionarios.add(funcionario);
 
 	            System.out.println("Funcionário adicionado com sucesso.");
