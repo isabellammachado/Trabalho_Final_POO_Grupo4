@@ -20,6 +20,19 @@ public class Funcionario extends Pessoa {
 		this.descontoINSS = 0.0;
 		this.descontoIR = 0.0;
 	}
+	
+	//CONSTRUTOR PARA LEITURA DO CSV
+	public Funcionario(String nome, String cpf, LocalDate dataNascimento, double salarioBruto) {
+		super(nome, cpf, dataNascimento);
+		this.salarioBruto = salarioBruto;
+		this.dependentes = new ArrayList<>();
+		this.descontoINSS = 0.0;
+		this.descontoIR = 0.0;
+	}
+
+
+
+
 
 	public double getSalarioBruto() {
 		return salarioBruto;

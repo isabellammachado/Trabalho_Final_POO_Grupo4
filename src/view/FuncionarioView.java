@@ -10,10 +10,12 @@ import service.ArquivoService;
 
 public class FuncionarioView {
 
+
     public void selecionarMenu() throws DependenteException {
         int opcao;
         List<Funcionario> funcionarios = new ArrayList<>();
         ListagemFuncionarios lista = new ListagemFuncionarios();
+
 
         do {
             View.menu();

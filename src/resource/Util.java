@@ -46,17 +46,17 @@ public class Util {
 		return texto;
 	}
 
-	public static double informarDouble(double msg) {
-		Scanner input = new Scanner(System.in);
-		double valor = 0;
-
-		System.out.println(msg);
-
-		try {
-			valor = input.nextInt();
-		} catch (InputMismatchException e) {
-			System.out.println("Valor inválido");
-		}
-		return valor;
-	}
+//	public static double informarDouble(double msg) {
+//		Scanner input = new Scanner(System.in);
+//		double valor = 0;
+//
+//		System.out.println(msg);
+//
+//		try {
+//			valor = input.nextDouble();
+//		} catch (InputMismatchException e) {
+//			System.out.println("Valor inválido");
+//		}
+//		return valor;
+//	}
 }
