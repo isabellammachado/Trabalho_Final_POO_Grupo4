@@ -219,5 +219,41 @@ public class ListagemFuncionarios {
 	    }
 	}
 
+	public void imprimirFuncionarioCpf(List<Funcionario> funcionarios) {
+	    Scanner input = new Scanner(System.in);
+	    System.out.print("Digite o CPF do funcionário: ");
+	    String cpfProcurado = input.nextLine();
+
+	    boolean encontrado = false;
+
+	    for (Funcionario f : funcionarios) {
+	        if (f.getCpf().equals(cpfProcurado)) {
+	            System.out.println("\n===== Funcionário Encontrado =====\n");
+	            System.out.println("Nome: " + f.getNome());
+	            System.out.println("CPF: " + f.getCpf());
+	            System.out.println("Data de Nascimento: " + f.getDataNascimento());
+	            System.out.println("Salário: R$ " + String.format("%.2f", f.getSalarioBruto()));
+
+	            if (!f.getDependentes().isEmpty()) {
+	                System.out.println("Dependentes:");
+	                for (Dependente d : f.getDependentes()) {
+	                    System.out.println("  • Nome: " + d.getNome());
+	                    System.out.println("    Parentesco: " + d.getParentesco());
+	                    System.out.println("    Data de Nascimento: " + d.getDataNascimento());
+	                }
+	            } else {
+	                System.out.println("Dependentes: Nenhum");
+	            }
+
+	            System.out.println("\n----------------------------------------\n");
+	            encontrado = true;
+	            break; // sai do loop depois de achar
+	        }
+	    }
+
+	    if (!encontrado) {
+	        System.out.println("Funcionário não encontrado ou sem registro.");
+	    }
+	}
 
 }
