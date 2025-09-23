@@ -1,13 +1,13 @@
-package servico;
+package service;
 
 import java.time.LocalDate;
 
 import model.FolhaPagamento;
 import model.Funcionario;
 
-public class CalculoFolhaDePagamento extends FolhaPagamento implements Calculos{
+public class CalculoService extends FolhaPagamento implements ICalculoService{
 
-	public CalculoFolhaDePagamento(int codigo, Funcionario funcionario, LocalDate dataPagamento, double descontoINSS,
+	public CalculoService(int codigo, Funcionario funcionario, LocalDate dataPagamento, double descontoINSS,
 			double descontoIR, double salarioLiquido) {
 		super(codigo, funcionario, dataPagamento, descontoINSS, descontoIR, salarioLiquido);
 		// TODO Auto-generated constructor stub

@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.time.Period;
 
-import classeException.DependenteException;
+import exception.DependenteException;
 import enums.Parentesco;
 
 public class Dependente extends Pessoa {
@@ -13,7 +13,7 @@ public class Dependente extends Pessoa {
 			throws DependenteException {
 		super(nome, cpf, dataNascimento);
 
-		if (Period.between(dataNascimento, LocalDate.now()).getYears() <= 18) {
+		if (Period.between(dataNascimento, LocalDate.now()).getYears() >= 18) {
 			throw new DependenteException("Dependente deve ser menor que 18 anos.");
 		}
 		this.parentesco = parentesco;// 
