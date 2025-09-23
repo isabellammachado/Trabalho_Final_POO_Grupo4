@@ -4,6 +4,7 @@ import model.Dependente;
 import model.Funcionario;
 import enums.Parentesco;
 import persistence.ConnectionFactory;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class DependenteDao {
 
     public DependenteDao() {}
 
+    // Inserir dependente
     public void inserir(Dependente dependente, Funcionario funcionario) {
         String sql = "INSERT INTO trabalho_final_poo.dependente(nome, cpf, data_nascimento, parentesco, funcionario_id) "
                    + "VALUES (?, ?, ?, ?, ?)";
@@ -41,6 +43,7 @@ public class DependenteDao {
         }
     }
 
+    // Atualizar dependente
     public void atualizar(Dependente dependente) {
         String sql = "UPDATE trabalho_final_poo.dependente SET nome=?, cpf=?, data_nascimento=?, parentesco=? WHERE id=?";
 
@@ -61,6 +64,7 @@ public class DependenteDao {
         }
     }
 
+    // Remover dependente
     public void remover(int codigo) {
         String sql = "DELETE FROM trabalho_final_poo.dependente WHERE id=?";
 
@@ -76,6 +80,7 @@ public class DependenteDao {
         }
     }
 
+    // Listar dependentes por funcionário
     public List<Dependente> listarPorFuncionario(int funcionarioId) {
         List<Dependente> dependentes = new ArrayList<>();
         String sql = "SELECT id, nome, cpf, data_nascimento, parentesco FROM trabalho_final_poo.dependente WHERE funcionario_id=?";
@@ -84,15 +89,25 @@ public class DependenteDao {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, funcionarioId);
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+
+                    // Converte string do banco para enum de forma segura
+                    String parentescoStr = rs.getString("parentesco");
                     Parentesco parentescoEnum;
-                    try {
-                        parentescoEnum = Parentesco.valueOf(rs.getString("parentesco").toUpperCase());
-                    } catch (Exception e) {
+                    if (parentescoStr == null || parentescoStr.trim().isEmpty()) {
                         parentescoEnum = Parentesco.OUTROS;
+                    } else {
+                        switch (parentescoStr.trim().toUpperCase()) {
+                            case "FILHO": parentescoEnum = Parentesco.FILHO; break;
+                            case "SOBRINHO": parentescoEnum = Parentesco.SOBRINHO; break;
+                            case "OUTROS": parentescoEnum = Parentesco.OUTROS; break;
+                            default: parentescoEnum = Parentesco.OUTROS; break;
+                        }
                     }
 
+                    // Cria o dependente
                     try {
                         Dependente d = new Dependente(
                                 rs.getString("nome"),

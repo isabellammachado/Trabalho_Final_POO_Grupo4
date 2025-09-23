@@ -34,4 +34,12 @@ public class Dependente extends Pessoa {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() +
+               " | CPF: " + getCpf() +
+               " | Nascimento: " + getDataNascimento() +
+               " | Parentesco: " + parentesco;
+    }
 }
