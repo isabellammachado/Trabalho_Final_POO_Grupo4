@@ -81,20 +81,4 @@ public class ArquivoService {
         System.out.println("Funcionários carregados e salvos no banco com sucesso!");
         return funcionarios;
     }
-
-    public static void ExportarArquivoTXT(ArrayList<Funcionario> funcionarios, ArrayList<FolhaPagamento> folhaPagamentos) {
-        try (PrintWriter writer = new PrintWriter("Teste.txt")) {
-            for (FolhaPagamento fp : folhaPagamentos) {
-                writer.println(fp.getFuncionario().getNome() + ";" +
-                        fp.getFuncionario().getCpf() + ";" +
-                        fp.getDataPagamento() + ";" +
-                        String.format("%.2f", fp.getDescontoINSS()) + ";" +
-                        String.format("%.2f", fp.getDescontoIR()) + ";" +
-                        String.format("%.2f", fp.getSalarioLiquido()));
-            }
-            System.out.println("Folha de Pagamento criada!");
-        } catch (Exception e) {
-            System.err.println("Erro ao exportar arquivo: " + e.getMessage());
-        }
-    }
 }

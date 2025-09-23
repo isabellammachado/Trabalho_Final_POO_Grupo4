@@ -1,5 +1,9 @@
 package model;
 
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +12,7 @@ import dao.DependenteDao;
 import dao.FuncionarioDao;
 import enums.Parentesco;
 import exception.DependenteException;
+import persistence.ConnectionFactory;
 
 public class ListagemFuncionarios {
 
@@ -19,6 +24,7 @@ public class ListagemFuncionarios {
         this.dependenteDao = new DependenteDao();
     }
 
+    // Adiciona um funcionário e seus dependentes
     public void adicionarFuncionario() {
         Scanner sc = new Scanner(System.in);
 
@@ -30,8 +36,7 @@ public class ListagemFuncionarios {
             String cpf = sc.nextLine();
 
             System.out.print("Data de nascimento (yyyy-MM-dd): ");
-            String dataNascimentoStr = sc.nextLine();
-            LocalDate dataNascimento = LocalDate.parse(dataNascimentoStr);
+            LocalDate dataNascimento = LocalDate.parse(sc.nextLine());
 
             System.out.print("Salário bruto: ");
             double salarioBruto = Double.parseDouble(sc.nextLine());
@@ -39,28 +44,28 @@ public class ListagemFuncionarios {
             Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
             funcionarioDao.inserir(funcionario);
 
-            System.out.println("Deseja adicionar dependentes? (S/N)");
-            String resp = sc.nextLine().trim().toUpperCase();
-            while (resp.equals("S")) {
-                System.out.print("Nome do dependente: ");
-                String nomeDep = sc.nextLine();
-
-                System.out.print("CPF do dependente: ");
-                String cpfDep = sc.nextLine();
-
-                System.out.print("Data de nascimento (yyyy-MM-dd): ");
-                LocalDate dataNascimentoDep = LocalDate.parse(sc.nextLine());
-
-                System.out.print("Parentesco (FILHO, FILHA, OUTROS): ");
-                Parentesco parentesco = Parentesco.valueOf(sc.nextLine().toUpperCase());
-
-                Dependente dependente = new Dependente(nomeDep, cpfDep, dataNascimentoDep, parentesco);
-                dependenteDao.inserir(dependente, funcionario);
-                funcionario.adicionarDependente(dependente);
-
-                System.out.println("Deseja adicionar outro dependente? (S/N)");
+            String resp;
+            do {
+                System.out.println("Deseja adicionar dependentes? (S/N)");
                 resp = sc.nextLine().trim().toUpperCase();
-            }
+                if (resp.equals("S")) {
+                    System.out.print("Nome do dependente: ");
+                    String nomeDep = sc.nextLine();
+
+                    System.out.print("CPF do dependente: ");
+                    String cpfDep = sc.nextLine();
+
+                    System.out.print("Data de nascimento (yyyy-MM-dd): ");
+                    LocalDate dataNascimentoDep = LocalDate.parse(sc.nextLine());
+
+                    System.out.print("Parentesco (FILHO, FILHA, OUTROS): ");
+                    Parentesco parentesco = Parentesco.valueOf(sc.nextLine().toUpperCase());
+
+                    Dependente dependente = new Dependente(nomeDep, cpfDep, dataNascimentoDep, parentesco);
+                    dependenteDao.inserir(dependente, funcionario);
+                    funcionario.adicionarDependente(dependente);
+                }
+            } while (resp.equals("S"));
 
             System.out.println("Funcionário cadastrado com sucesso!");
 
@@ -69,6 +74,7 @@ public class ListagemFuncionarios {
         }
     }
 
+    // Altera os dados de um funcionário
     public void alterarFuncionario() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Digite o CPF do funcionário a ser alterado: ");
@@ -78,6 +84,7 @@ public class ListagemFuncionarios {
             List<Funcionario> funcionarios = funcionarioDao.listar();
             Funcionario funcionario = null;
 
+            // Procura o funcionário pelo CPF
             for (Funcionario f : funcionarios) {
                 if (f.getCpf().equals(cpfBusca)) {
                     funcionario = f;
@@ -103,72 +110,82 @@ public class ListagemFuncionarios {
             }
 
             funcionarioDao.atualizar(funcionario);
-            System.out.println("Funcionário alterado com sucesso no banco.");
+            System.out.println("Funcionário alterado com sucesso!");
 
         } catch (Exception e) {
-            System.out.println("Erro ao alterar funcionário: " + e.getMessage());
+            System.err.println("Erro ao alterar funcionário: " + e.getMessage());
         }
     }
 
-    public void removerFuncionario() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Digite o CPF do funcionário a ser removido: ");
-        String cpfBusca = sc.nextLine();
-
-        try {
-            List<Funcionario> funcionarios = funcionarioDao.listar();
-            Funcionario funcionario = null;
-
-            for (Funcionario f : funcionarios) {
-                if (f.getCpf().equals(cpfBusca)) {
-                    funcionario = f;
-                    break;
-                }
-            }
-
-            if (funcionario == null) {
-                System.out.println("Funcionário não encontrado.");
-                return;
-            }
-
-            funcionarioDao.remover(funcionario.getCodigo());
-            System.out.println("Funcionário removido com sucesso!");
-
-        } catch (Exception e) {
-            System.out.println("Erro ao remover funcionário: " + e.getMessage());
-        }
-    }
-
+    // Imprime informações de um funcionário pelo CPF
     public void imprimirFuncionarioCpf(List<Funcionario> funcionarios) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Digite o CPF do funcionário: ");
         String cpf = sc.nextLine();
 
+        boolean encontrado = false;
         for (Funcionario f : funcionarios) {
             if (f.getCpf().equals(cpf)) {
                 System.out.println(f);
                 if (!f.getDependentes().isEmpty()) {
                     System.out.println("Dependentes:");
-                    for (var d : f.getDependentes()) {
+                    for (Dependente d : f.getDependentes()) {
                         System.out.println("  - " + d);
                     }
                 }
-                return;
+                encontrado = true;
+                break;
             }
         }
-
-        System.out.println("Funcionário não encontrado.");
+        if (!encontrado) {
+            System.out.println("Funcionário não encontrado.");
+        }
     }
 
+    // Exibe todos os funcionários e seus dependentes
     public void exibirFuncionarios(List<Funcionario> funcionarios) {
         for (Funcionario f : funcionarios) {
             System.out.println(f);
             if (!f.getDependentes().isEmpty()) {
                 System.out.println("Dependentes:");
-                for (var d : f.getDependentes()) {
+                for (Dependente d : f.getDependentes()) {
                     System.out.println("  - " + d);
                 }
             }
+        }
+    }
+
+    // Exporta a folha de pagamento para arquivo TXT
+    public static void ExportarArquivoTXT() {
+        try (Connection conn = new ConnectionFactory().getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(
+                     "SELECT f.nome, f.cpf, fp.dataPagamento, fp.descontoINSS, fp.descontoIR, fp.salarioLiquido " +
+                     "FROM trabalho_final_poo.folha_pagamento fp " +
+                     "JOIN trabalho_final_poo.funcionario f ON fp.funcionario_id = f.id")) {
+
+            try (PrintWriter writer = new PrintWriter("Teste.txt")) {
+                boolean temDados = false;
+                while (rs.next()) {
+                    temDados = true;
+                    writer.println(
+                            rs.getString("nome") + ";" +
+                            rs.getString("cpf") + ";" +
+                            rs.getDate("dataPagamento").toLocalDate() + ";" +
+                            String.format("%.2f", rs.getDouble("descontoINSS")) + ";" +
+                            String.format("%.2f", rs.getDouble("descontoIR")) + ";" +
+                            String.format("%.2f", rs.getDouble("salarioLiquido"))
+                    );
+                }
+                if (temDados) {
+                    System.out.println("Folha de Pagamento criada com sucesso!");
+                } else {
+                    System.out.println("Não há dados de folha de pagamento para exportar.");
+                }
+            }
+
+        } catch (Exception e) {
+            System.err.println("Erro ao exportar arquivo: " + e.getMessage());
         }
     }
 }

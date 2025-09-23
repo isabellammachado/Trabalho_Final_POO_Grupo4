@@ -93,4 +93,31 @@ public class FuncionarioDao {
         }
         return funcionarios;
     }
+
+    // NOVO: busca funcionário pelo ID
+    public Funcionario buscarPorId(int codigo) {
+        String sql = "SELECT * FROM trabalho_final_poo.funcionario WHERE id = ?";
+        try (Connection conn = new ConnectionFactory().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, codigo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Funcionario f = new Funcionario(
+                            rs.getString("nome"),
+                            rs.getString("cpf"),
+                            rs.getObject("data_nascimento", LocalDate.class),
+                            rs.getDouble("salario_bruto")
+                    );
+                    f.setCodigo(rs.getInt("id"));
+                    return f;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar funcionário por ID: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
