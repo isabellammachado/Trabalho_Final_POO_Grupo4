@@ -8,8 +8,8 @@
     * [x] FolhaPagamentoDao 
 * [x] Leitura do txt 
 * [x] Conexão com o BD 
-* [ ] Arrumar Métodos da CalculoService
-* [ ] Criar Classe Main para orquestração do App
+* [x] Arrumar Métodos da CalculoService
+* [x] Criar Classe Main para orquestração do App
 
 
 **ORDEM DE COMANDOS GIT**
