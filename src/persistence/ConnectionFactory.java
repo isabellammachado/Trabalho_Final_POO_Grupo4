@@ -8,18 +8,18 @@ import java.sql.Statement;
 public class ConnectionFactory {
 
     String url = "jdbc:postgresql://localhost:5432/curso";
-    String usuario = "postgres";
-    String senha = "2300";
+    String usuario = "gabrielmschmidt";
+    String senha = "231604";
     private Connection conn;
 
     public Connection getConnection() {
-        System.out.println("Conectando no banco de dados.....");
+//        System.out.println("Conectando no banco de dados.....");
 
         try {
             conn = DriverManager.getConnection(url, usuario, senha);
 
             if (conn != null) {
-                System.out.println("Conectado com sucesso!");
+//                System.out.println("Conectado com sucesso!");
 
                 try (Statement stmt = conn.createStatement()) {
                     String sql = """
@@ -57,7 +57,7 @@ public class ConnectionFactory {
                         );
                         """;
                     stmt.executeUpdate(sql);
-                    System.out.println("Tabelas verificadas/criadas com sucesso!");
+//                    System.out.println("Tabelas verificadas/criadas com sucesso!");
                 }
             } else {
                 System.out.println("Erro nos dados da conexão!");

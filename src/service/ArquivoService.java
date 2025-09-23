@@ -107,7 +107,7 @@ public class ArquivoService {
 	}
 
 	public static void ExportarArquivoTXT(ArrayList<Funcionario> funcionarios, ArrayList<FolhaPagamento> folhaPagamentos) {
-		try (PrintWriter writer = new PrintWriter(new FileWriter("Teste.txt"))) {
+		try (PrintWriter writer = new PrintWriter(new FileWriter("FolhaPagamento.txt"))) {
 			
 			for (FolhaPagamento fp : folhaPagamentos) {
 				writer.println(fp.getFuncionario().getNome() + ";" + fp.getFuncionario().getCpf() + ";" + fp.getDataPagamento() + ";" + String.format("%.2f", fp.getDescontoINSS()) + ";" + String.format("%.2f", fp.getDescontoIR()) + ";" + String.format("%.2f", fp.getSalarioLiquido()) );

@@ -11,7 +11,7 @@ import enums.Parentesco;
 
 public class ListagemFuncionarios {
     private ArrayList<Funcionario> funcionarios = new ArrayList<>();
-    private FuncionarioDao dao = new FuncionarioDao(); 
+    private FuncionarioDao dao = new FuncionarioDao();
 
     public ArrayList<Funcionario> getFuncionarios() {
         return funcionarios;
@@ -135,10 +135,10 @@ public class ListagemFuncionarios {
 
                 Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
 
-               
+
                 funcionarios.add(funcionario);
 
-               
+
                 try {
                     dao.inserir(funcionario);
                     System.out.println("Funcionário adicionado com sucesso e registrado no banco.");
@@ -146,7 +146,7 @@ public class ListagemFuncionarios {
                     System.out.println("Erro ao salvar no banco: " + e.getMessage());
                 }
 
-                cancelarCadastro = true; 
+                cancelarCadastro = true;
 
             } catch (Exception e) {
                 System.out.println("Erro inesperado. Cadastro cancelado.");
@@ -183,7 +183,7 @@ public class ListagemFuncionarios {
             funcionario.setSalarioBruto(Double.parseDouble(novoSalario));
         }
 
-       
+
         try {
             dao.atualizar(funcionario, 0);
             System.out.println("Funcionário alterado com sucesso no banco.");

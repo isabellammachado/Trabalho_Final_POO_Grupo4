@@ -32,7 +32,7 @@ public class FolhaPagamentoDao {
                 folhaPagamento.setCodigo(rs.getInt(1));
             }
         }
-        System.out.print("Folha de Pagamento [" + folhaPagamento.getCodigo() + "] adicionada com sucesso!");
+        System.out.println("Folha de Pagamento [" + folhaPagamento.getCodigo() + "] adicionada com sucesso!");
 
     }
 }

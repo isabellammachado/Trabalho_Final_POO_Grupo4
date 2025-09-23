@@ -34,7 +34,7 @@ public class FuncionarioDao {
                 funcionario.setCodigo(rs.getInt(1));
             }
         }
-        System.out.print("Funcionário [" + funcionario.getCodigo() + "] adicionado com sucesso!");
+        System.out.println("Funcionário [" + funcionario.getCodigo() + "] adicionado com sucesso!");
     }
 
 	public void atualizar(Funcionario funcionario, int codigo) {

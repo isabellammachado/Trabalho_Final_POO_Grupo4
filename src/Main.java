@@ -1,5 +1,7 @@
-import dao.FolhaPagamentoDao;
+import dao.DependenteDao;
 import dao.FuncionarioDao;
+import dao.FolhaPagamentoDao;
+import model.Dependente;
 import model.FolhaPagamento;
 import model.Funcionario;
 import service.ArquivoService;
@@ -15,6 +17,7 @@ public class Main {
         ArquivoService arquivoService = new ArquivoService();
         CalculoService calculoService = new CalculoService();
         FuncionarioDao funcionarioDao = new FuncionarioDao();
+        DependenteDao dependenteDao = new DependenteDao();
         FolhaPagamentoDao folhaPagamentoDao = new FolhaPagamentoDao();
 
         ArrayList<Funcionario> funcionarios = new ArrayList<>();
@@ -28,6 +31,10 @@ public class Main {
             func.setDescontoINSS(calculoService.calcularINSS(salarioBruto));
             func.setDescontoIR(calculoService.calcularIR(qtdDependentes, salarioBruto));
             funcionarioDao.inserir(func);
+
+            for (Dependente dep : func.getDependentes()) {
+                dependenteDao.inserir(dep, func);
+            }
 
             LocalDate date = LocalDate.now();
             double salarioLiquido = calculoService.calcularSalarioLiquido(func.getSalarioBruto(), func.getDescontoINSS(), func.getDescontoIR());
