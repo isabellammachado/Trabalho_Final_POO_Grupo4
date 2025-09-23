@@ -22,7 +22,7 @@ public class TestaConnection {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int codigo = rs.getInt("id");
+//                int codigo = rs.getInt("id");
                 String nome = rs.getString("nome");
                 String cpf = rs.getString("cpf");
 
@@ -31,7 +31,7 @@ public class TestaConnection {
 
                 double salarioBruto = rs.getDouble("salario_bruto");
 
-                Funcionario funcionario = new Funcionario(codigo, nome,cpf, dataNascimento, salarioBruto);
+                Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
 
                 listaFuncionario.add(funcionario);
 

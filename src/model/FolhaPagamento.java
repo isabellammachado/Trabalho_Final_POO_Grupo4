@@ -11,9 +11,9 @@ public class FolhaPagamento {
     protected double salarioLiquido;
     
    
-	public FolhaPagamento(int codigo, Funcionario funcionario, LocalDate dataPagamento, double descontoINSS,
+	public FolhaPagamento(Funcionario funcionario, LocalDate dataPagamento, double descontoINSS,
 			double descontoIR, double salarioLiquido) {
-		this.codigo = codigo;
+		this.codigo = -1;
 		this.funcionario = funcionario;
 		this.dataPagamento = dataPagamento;
 		this.descontoINSS = descontoINSS;

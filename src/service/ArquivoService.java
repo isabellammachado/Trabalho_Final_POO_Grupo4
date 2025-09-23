@@ -40,13 +40,12 @@ public class ArquivoService {
 				}
 				String[] dados = linha.split(";"); // Separa os atributos da linha a cada ;
 
-				if (dados.length == 5) {
-                    int codigo = Integer.parseInt(dados[0]);
-					String nome = dados[1].trim();
-					String cpf = dados[2].trim();
-					LocalDate dataNascimento = LocalDate.parse(dados[3].trim(),
+				if (dados.length == 4) {
+					String nome = dados[0].trim();
+					String cpf = dados[1].trim();
+					LocalDate dataNascimento = LocalDate.parse(dados[2].trim(),
 							DateTimeFormatter.ofPattern("yyyyMMdd"));
-					double salarioBruto = Double.parseDouble(dados[4].trim().replace(',', '.'));
+					double salarioBruto = Double.parseDouble(dados[3].trim().replace(',', '.'));
 
 					// VERIFICA SOMENTE NO CSV. IDEAL COLOCAR CHECAGEM NO BANCO.
 					for (Funcionario funcionario : funcionarios) {
@@ -55,7 +54,7 @@ public class ArquivoService {
 						}
 					}
 
-					Funcionario funcionario = new Funcionario(codigo, nome, cpf, dataNascimento, salarioBruto); // Vai criar um
+					Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto); // Vai criar um
 																										// obj
 																										// funcionario
 																										// com as

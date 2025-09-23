@@ -133,7 +133,7 @@ public class ListagemFuncionarios {
 
                 if (cancelarCadastro) break;
 
-                Funcionario funcionario = new Funcionario(codigo, nome, cpf, dataNascimento, salarioBruto);
+                Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, salarioBruto);
 
                
                 funcionarios.add(funcionario);

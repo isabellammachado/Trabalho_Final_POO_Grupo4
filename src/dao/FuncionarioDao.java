@@ -1,10 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +15,24 @@ public class FuncionarioDao {
 	
     public void inserir(Funcionario funcionario) throws SQLException {
         
-        String sql = "INSERT INTO trabalho_final_poo.funcionario(id, nome, cpf, data_nascimento, salario_bruto, desconto_inss, desconto_ir) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO trabalho_final_poo.funcionario(nome, cpf, data_nascimento, salario_bruto, desconto_inss, desconto_ir) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = new ConnectionFactory().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, funcionario.getCodigo());
-            stmt.setString(2, funcionario.getNome());
-            stmt.setString(3, funcionario.getCpf());
-            stmt.setDate(4, Date.valueOf(funcionario.getDataNascimento()));
-            stmt.setDouble(5, funcionario.getSalarioBruto());
-            stmt.setDouble(6, funcionario.getDescontoINSS());
-            stmt.setDouble(7, funcionario.getDescontoIR());
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+//            stmt.setInt(1, funcionario.getCodigo());
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCpf());
+            stmt.setDate(3, Date.valueOf(funcionario.getDataNascimento()));
+            stmt.setDouble(4, funcionario.getSalarioBruto());
+            stmt.setDouble(5, funcionario.getDescontoINSS());
+            stmt.setDouble(6, funcionario.getDescontoIR());
 
             stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                funcionario.setCodigo(rs.getInt(1));
+            }
         }
         System.out.print("Funcionário [" + funcionario.getCodigo() + "] adicionado com sucesso!");
     }
@@ -85,7 +85,7 @@ public class FuncionarioDao {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Funcionario f = new Funcionario(rs.getInt("codigo"), rs.getString("nome"), rs.getString("cpf"),
+				Funcionario f = new Funcionario(rs.getString("nome"), rs.getString("cpf"),
 						rs.getObject("data_nascimento", LocalDate.class), rs.getDouble("salario_bruto") );
 				funcionarios.add(f);
 			}

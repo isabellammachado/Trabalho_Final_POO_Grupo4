@@ -10,25 +10,37 @@ public class CalculoService implements ICalculoService{
 	public CalculoService() {}
 
 	@Override
-	public double calcularIR(int qtdDependentes, double salarioBruto) {
-		// cIR = ((SlBruto -DeduçãoDependentes) +AliquotaIR)-DeduçãoIR
-		double deducaoDependente = 189.59;
-		double totalDeducao = qtdDependentes * deducaoDependente;
-		double descontoIR;
+    public double calcularIR(int qtdDependentes, double salarioBruto) {
+        // cIR = ((SlBruto -DeduçãoDependentes) +AliquotaIR)-DeduçãoIR
+        double deducaoDependente = 189.59;
+        double totalDeducao = qtdDependentes * deducaoDependente;
+        double descontoIR;
 
-		if (salarioBruto <= 2259.20) {
-			descontoIR = 0.0;
-		} else if (salarioBruto <= 2826.65) {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.075 - 169.44);
-		} else if (salarioBruto <= 3751.05) {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.15 - 381.44);
-		} else if (salarioBruto <= 4664.68) {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.225 - 662.77);
-		} else {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.275 - 896.00);
-		}
-		return descontoIR;
-	}
+        if (salarioBruto <= 2259.20) {
+            descontoIR = 0.0;
+        } else if (salarioBruto <= 2826.65) {
+            descontoIR = ((salarioBruto - totalDeducao) * 0.075 - 169.44);
+            if (descontoIR < 0) {
+                descontoIR = 0.0;
+            }
+        } else if (salarioBruto <= 3751.05){
+            descontoIR = ((salarioBruto - totalDeducao) * 0.15 - 381.44);
+            if (descontoIR < 0) {
+                descontoIR = 0.0;
+            }
+        } else if (salarioBruto <= 4664.68) {
+            descontoIR = ((salarioBruto - totalDeducao) * 0.225 - 662.77);
+            if (descontoIR < 0) {
+                descontoIR = 0.0;
+            }
+        } else {
+            descontoIR = ((salarioBruto - totalDeducao) * 0.275 - 896.00);
+            if (descontoIR < 0) {
+                descontoIR = 0.0;
+            }
+        }
+        return descontoIR;
+    }
 
 	@Override
 	public double calcularINSS(double salarioBruto) {
@@ -49,9 +61,7 @@ public class CalculoService implements ICalculoService{
 	}
 
     @Override
-	public double calcularSalarioLiquido(double salarioBruto, int qtdDependentes) {
-		double descontoINSS = calcularINSS(salarioBruto);
-		double descontoIR = calcularIR(qtdDependentes, salarioBruto);
-		return salarioBruto - descontoINSS - descontoIR;
+	public double calcularSalarioLiquido(double salarioBruto, double descontoINSS, double descontoIR) {
+        return salarioBruto - descontoINSS - descontoIR;
 	}
 }
