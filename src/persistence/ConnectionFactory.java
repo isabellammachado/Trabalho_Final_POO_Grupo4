@@ -10,7 +10,7 @@ public class ConnectionFactory {
     // Dados de conexão
     private static final String URL = "jdbc:postgresql://localhost:5432/curso";
     private static final String USUARIO = "postgres";
-    private static final String SENHA = "2300";
+    private static final String SENHA = "postgres";
 
     // Retorna uma conexão com o banco
     public Connection getConnection() {
