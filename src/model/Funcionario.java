@@ -20,19 +20,6 @@ public class Funcionario extends Pessoa {
 		this.descontoINSS = 0.0;
 		this.descontoIR = 0.0;
 	}
-	
-//	CONSTRUTOR PARA LEITURA DO CSV
-//	public Funcionario(String nome, String cpf, LocalDate dataNascimento, double salarioBruto) {
-//		super(nome, cpf, dataNascimento);
-//		this.salarioBruto = salarioBruto;
-//		this.dependentes = new ArrayList<>();
-//		this.descontoINSS = 0.0;
-//		this.descontoIR = 0.0;
-//	}
-
-
-
-
 
 	public double getSalarioBruto() {
 		return salarioBruto;
@@ -84,59 +71,4 @@ public class Funcionario extends Pessoa {
         return "Nome: " + nome + " | CPF: " + cpf + " | Data Nascimento: "
                 + dataNascimento + " | Salário Bruto: " + salarioBruto;
     }
-/*
-	public double calcularIR() {
-		// cIR = ((SlBruto -DeduçãoDependentes) +AliquotaIR)-DeduçãoIR
-		double deducaoDependente = 189.59;
-		double totalDeducao = dependentes.size() * deducaoDependente;
-		if (salarioBruto <= 2259.20) {
-			descontoIR = 0.0;
-			return descontoIR;
-		} else if (salarioBruto <= 2826.65) {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.75 - 169.44);
-			return descontoIR;
-		} else if (salarioBruto <= 3751.05) {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.15 - 381.44);
-			return descontoIR;
-		} else if (salarioBruto <= 4664.68) {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.225 - 662.77);
-			return descontoIR;
-		} else {
-			descontoIR = ((salarioBruto - totalDeducao) * 0.275 - 896.00);
-			return descontoIR;
-		}
-	}
-*/
-	/*
-	@Override
-	public double calcularINSS() {
-		// cInss = (SlBruto + AliquotaInss) -DeduçãoInss
-		if (salarioBruto <= 1518.00) {
-			descontoINSS = salarioBruto * 0.075;
-			return descontoINSS;
-		} else if (salarioBruto <= 2793.88) {
-			descontoINSS = (salarioBruto * 0.09) - 22.77;
-			return descontoINSS;
-		} else if (salarioBruto <= 4190.83) {
-			descontoINSS = (salarioBruto * 0.12) - 106.60;
-			return descontoINSS;
-		} else if (salarioBruto <= 8157.41) {
-			descontoINSS = (salarioBruto * 0.14) - 190.42;
-			return descontoINSS;
-		} else {
-			descontoINSS = 951.62;
-		}
-		return descontoINSS;
-	}
-*/
-	/*
-	public double calcularSalarioLiquido() {
-		// Sl = SlBruto -ClInss - CalculoIR
-		double salarioBruto = getSalarioBruto();
-		double descontoINSS = calcularINSS();
-		double descontoIR = calcularIR();
-
-		return salarioBruto - descontoINSS - descontoIR;
-	}
-*/
 }

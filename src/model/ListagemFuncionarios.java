@@ -192,29 +192,6 @@ public class ListagemFuncionarios {
         }
     }
 
-//    public void carregarFuncionariosDeArquivo(String caminhoArquivo) {
-//        try (BufferedReader br = new BufferedReader(new java.io.FileReader(caminhoArquivo))) {
-//            String linha;
-//            while ((linha = br.readLine()) != null) {
-//                String[] campos = linha.split(",");
-//                Funcionario funcionario = new Funcionario(
-//                        campos[0],
-//                        campos[1],
-//                        LocalDate.parse(campos[2]),
-//                        Double.parseDouble(campos[3])
-//                );
-//
-//
-//                funcionarios.add(funcionario);
-//
-//                dao.inserir(funcionario);
-//            }
-//            System.out.println("Arquivo importado com sucesso!");
-//        } catch (Exception e) {
-//            System.out.println("Erro: " + e.getMessage());
-//        }
-//    }
-
     public void exibirFuncionarios(List<Funcionario> funcionarios) {
         System.out.println("\n===== Lista de Funcionários =====\n");
 

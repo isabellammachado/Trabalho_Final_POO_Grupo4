@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
+    	
         ArquivoService arquivoService = new ArquivoService();
         CalculoService calculoService = new CalculoService();
         FuncionarioDao funcionarioDao = new FuncionarioDao();
@@ -35,6 +36,6 @@ public class Main {
             folhaPagamentoDao.inserir(folhaPagamento);
             cont++;
         }
-
+        service.ArquivoService.ExportarArquivoTXT(funcionarios, folhaPagamentos);
     }
 }
