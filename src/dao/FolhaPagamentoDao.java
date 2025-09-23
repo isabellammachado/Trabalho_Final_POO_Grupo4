@@ -1,12 +1,12 @@
 package dao;
 
-import model.FolhaPagamento;
-import persistence.ConnectionFactory;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import model.FolhaPagamento;
+import persistence.ConnectionFactory;
 
 public class FolhaPagamentoDao {
 
