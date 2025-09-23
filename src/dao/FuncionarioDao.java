@@ -10,17 +10,15 @@ import persistence.ConnectionFactory;
 
 public class FuncionarioDao {
 
-	public FuncionarioDao() {}
+    public FuncionarioDao() {}
 
-	
     public void inserir(Funcionario funcionario) throws SQLException {
-        
         String sql = "INSERT INTO trabalho_final_poo.funcionario(nome, cpf, data_nascimento, salario_bruto, desconto_inss, desconto_ir) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+                   + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = new ConnectionFactory().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-//            stmt.setInt(1, funcionario.getCodigo());
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
             stmt.setString(1, funcionario.getNome());
             stmt.setString(2, funcionario.getCpf());
             stmt.setDate(3, Date.valueOf(funcionario.getDataNascimento()));
@@ -34,69 +32,65 @@ public class FuncionarioDao {
                 funcionario.setCodigo(rs.getInt(1));
             }
         }
-        System.out.print("Funcionário [" + funcionario.getCodigo() + "] adicionado com sucesso!");
     }
 
-	public void atualizar(Funcionario funcionario, int codigo) {
-		String sql = "UPDATE funcionarios SET nome=?, cpf=?, data_nascimento=?, salario_bruto=? WHERE codigo=?";
+    public void atualizar(Funcionario funcionario) {
+        String sql = "UPDATE trabalho_final_poo.funcionario SET nome=?, cpf=?, data_nascimento=?, salario_bruto=? WHERE id=?";
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)){
-			
-			stmt.setString(1, funcionario.getNome());
-			stmt.setString(2, funcionario.getCpf());
-			stmt.setObject(3, funcionario.getDataNascimento());
-			stmt.setDouble(4, funcionario.getSalarioBruto());
+        try (Connection conn = new ConnectionFactory().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			stmt.setInt(5, codigo);
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCpf());
+            stmt.setObject(3, funcionario.getDataNascimento());
+            stmt.setDouble(4, funcionario.getSalarioBruto());
+            stmt.setInt(5, funcionario.getCodigo());
 
-			stmt.executeUpdate();
-			stmt.close();
-			
-		} catch (SQLException e) {
-			
-			System.err.println("Erro ao atualizar registro de funcionário!");
-			e.printStackTrace();
-		}
-	}
+            stmt.executeUpdate();
 
-	// Remover funcionário
-	public void remover(int codigo) {
-		String sql = "DELETE FROM funcionarios WHERE codigo=?";
-		try (Connection conn = new ConnectionFactory().getConnection();
-	         PreparedStatement stmt = conn.prepareStatement(sql)){
-			
-			stmt.setInt(1, codigo);
-			stmt.executeUpdate();
-			stmt.close();
-		} catch (SQLException e) {
-			System.err.println("Erro ao remover registro de funcionário!");
-			e.printStackTrace();
-		}
-	}
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar registro de funcionário!");
+            e.printStackTrace();
+        }
+    }
 
-	public List<Funcionario> listar() {
-		String sql = "SELECT * FROM funcionarios";
-		List<Funcionario> funcionarios = new ArrayList<>();
+    public void remover(int codigo) {
+        String sql = "DELETE FROM trabalho_final_poo.funcionario WHERE id=?";
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql)){
-			
-			ResultSet rs = stmt.executeQuery();
+        try (Connection conn = new ConnectionFactory().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			while (rs.next()) {
-				Funcionario f = new Funcionario(rs.getString("nome"), rs.getString("cpf"),
-						rs.getObject("data_nascimento", LocalDate.class), rs.getDouble("salario_bruto") );
-				funcionarios.add(f);
-			}
+            stmt.setInt(1, codigo);
+            stmt.executeUpdate();
 
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			System.err.println("Erro ao listar funcionários!");
-			e.printStackTrace();
-		}
+        } catch (SQLException e) {
+            System.err.println("Erro ao remover registro de funcionário!");
+            e.printStackTrace();
+        }
+    }
 
-		return funcionarios;
-	}
+    public List<Funcionario> listar() {
+        String sql = "SELECT * FROM trabalho_final_poo.funcionario";
+        List<Funcionario> funcionarios = new ArrayList<>();
+
+        try (Connection conn = new ConnectionFactory().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Funcionario f = new Funcionario(
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getObject("data_nascimento", LocalDate.class),
+                        rs.getDouble("salario_bruto")
+                );
+                f.setCodigo(rs.getInt("id"));
+                funcionarios.add(f);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao listar funcionários!");
+            e.printStackTrace();
+        }
+        return funcionarios;
+    }
 }

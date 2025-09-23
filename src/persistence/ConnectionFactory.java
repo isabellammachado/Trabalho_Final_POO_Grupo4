@@ -7,20 +7,15 @@ import java.sql.Statement;
 
 public class ConnectionFactory {
 
-    String url = "jdbc:postgresql://localhost:5432/curso";
-    String usuario = "postgres";
-    String senha = "2300";
-    private Connection conn;
+    private String url = "jdbc:postgresql://localhost:5432/curso";
+    private String usuario = "postgres";
+    private String senha = "2300";
 
     public Connection getConnection() {
-        System.out.println("Conectando no banco de dados.....");
-
+        Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, usuario, senha);
-
             if (conn != null) {
-                System.out.println("Conectado com sucesso!");
-
                 try (Statement stmt = conn.createStatement()) {
                     String sql = """
                         CREATE SCHEMA IF NOT EXISTS trabalho_final_poo;
@@ -57,16 +52,11 @@ public class ConnectionFactory {
                         );
                         """;
                     stmt.executeUpdate(sql);
-                    System.out.println("Tabelas verificadas/criadas com sucesso!");
                 }
-            } else {
-                System.out.println("Erro nos dados da conexão!");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-        } 
-
+        }
         return conn;
     }
 }
