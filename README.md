@@ -9,11 +9,11 @@
 
 # Arquivos TXT - Grupo 4
 # Exemplo Funcionarios para importação
-<img width="433" height="394" alt="Captura de tela 2025-09-23 214359" src="https://github.com/user-attachments/assets/0eb620a2-7b26-44ee-8880-571b71f1fc76" />
+<img width="412" height="610" alt="Captura de tela 2025-09-23 214413" src="https://github.com/user-attachments/assets/ef6ba2e8-7280-4e6e-8e10-dd242f0d2133" />
 
 # Exemplo Funcionarios exportados após tratamento no banco de dados
+<img width="433" height="394" alt="Captura de tela 2025-09-23 214359" src="https://github.com/user-attachments/assets/0eb620a2-7b26-44ee-8880-571b71f1fc76" />
 
-<img width="412" height="610" alt="Captura de tela 2025-09-23 214413" src="https://github.com/user-attachments/assets/ef6ba2e8-7280-4e6e-8e10-dd242f0d2133" />
 
 
 
