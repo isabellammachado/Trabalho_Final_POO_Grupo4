@@ -1,4 +1,4 @@
-[FolhaPagamento.txt](https://github.com/user-attachments/files/22504090/FolhaPagamento.txt)[Funcionarios.txt](https://github.com/user-attachments/files/22504078/Funcionarios.txt)
+
 # Diagrama UML- Grupo 4
 <img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/011e10d8-bcb0-47d7-955e-74081a5a833d" />
 <img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/662ef58c-2059-478e-b133-8d5d1179aca8" />
