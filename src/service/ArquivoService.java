@@ -102,7 +102,6 @@ public class ArquivoService {
 		} catch (DependenteException | IllegalArgumentException e) {
 			System.err.println("Erro de validação ao carregar o arquivo: " + e.getMessage());
 		}
-        System.out.println("Funcionários carregados com sucesso!");
 		return funcionarios;
 	}
 
@@ -110,9 +109,8 @@ public class ArquivoService {
 		try (PrintWriter writer = new PrintWriter(new FileWriter("FolhaPagamento.txt"))) {
 			
 			for (FolhaPagamento fp : folhaPagamentos) {
-				writer.println(fp.getFuncionario().getNome() + ";" + fp.getFuncionario().getCpf() + ";" + fp.getDataPagamento() + ";" + String.format("%.2f", fp.getDescontoINSS()) + ";" + String.format("%.2f", fp.getDescontoIR()) + ";" + String.format("%.2f", fp.getSalarioLiquido()) );
+				writer.println(fp.getFuncionario().getNome() + ";" + fp.getFuncionario().getCpf() + ";" + String.format("%.2f", fp.getDescontoINSS()) + ";" + String.format("%.2f", fp.getDescontoIR()) + ";" + String.format("%.2f", fp.getSalarioLiquido()) );
 			}
-			System.out.println("Folha de Pagamento criada!");
         } catch (IOException e) {
             e.printStackTrace();
         }
