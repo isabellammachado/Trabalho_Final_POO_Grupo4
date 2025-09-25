@@ -58,6 +58,3 @@ git push
 
 - Funcionários serão inicializados com os descontos zerados, dentro do loop de leitura do txt a Main deve chamar a CalculoService para setar os atributos de Funcionario e, após isso, salvar no BD com o FuncionarioDao.
 
-- Perguntar: ListagemFuncionario está correta?
-- Perguntar: View ou Application deve orquestrar o sistema.
-- Sobre o Código do Funcionario: deixar do jeito q está, retirar ou alterar;
